@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block body %}
+  <!-- ***** Breadcrumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <h2 class="title">Contact</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="breadcumb--con">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Breadcrumb Area End ***** -->
+  {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'error' %} <div class="container alert alert-danger alert-dismissible fade show" role="alert"> 
+          <strong>{{message}}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>{% endif %}
+              <div class="container alert alert-{{message.tags}} alert-dismissible fade show" role="alert"> 
+                <strong>{{message}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+         {% endfor %}
+                     
+  {% endif %}
+
+  <!-- ***** Contact Area Start ***** -->
+  <section class="dento-contact-area mt-50 mb-100">
+    <div class="container">
+        <div class="row">
+            <h6 style="font-weight: 400;">Tu mensaje se envio correctamente. Vamos a enviarle un email lo mas rapido posible. Gracias por confiar en nosotros</h6> <br>
+        </div>
+    </div><br><br>
+    <div class="container"><a href="{% url 'index' %}" class="btn dento-btn booking-btn" >Volver a la pagina principal</a></div>
+  </section>
+  <!-- ***** Contact Area End ***** -->
+
+ {% endblock body %}

@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block body %}
+
+  <!-- ***** Breadcrumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <h2 class="title">Blog</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="breadcumb--con">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Breadcrumb Area End ***** -->
+  {% if request.GET.categoria  %}
+ 
+  <div class='container w-2' style="display: flex; justify-content:start; align-items:center; " >
+    <h6 style="  font-weight:400; font-size: 17px" class="mx-4"> Filtrando por categoria </h6>
+    <a href="{% url 'blog' %}" class=" dento-btn "  ><i class="fa-solid fa-circle-xmark"></i>Borrar filtro</a>
+  </div> 
+
+  {% endif %}
+  <!-- *****Blog Area Start ***** -->
+  <section class="dento-blog-area mt-50">
+    <div class="container">
+      <div class="row"> 
+        <div class="col-12 col-lg-8">
+
+          <!-- Single Blog Item -->
+          {% if posts %}
+          {% if request.GET.search %}
+          <div style="display: flex; justify-content:center; align-items:center; " >
+          <h6 style="  font-weight:400; font-size: 24px" class="mx-4"> Mostrando resultados de: <strong> {{request.GET.search}}</strong></h6>
+          <a href="{% url 'blog' %}" class=" bg-primary p-1 px-2" style="color: white;" ><i class="fa-solid fa-circle-xmark"></i>Borrar busqueda</a>
+        </div> <br>
+          {% endif %}
+        {% for post in posts %} 
+
+          <div class="single-blog-item style-2 d-flex flex-wrap align-items-center mb-50">
+            <!-- Blog Thumbnail -->
+            <div class="blog-thumbnail">
+              <a href="{% url 'blog_details' post.id %}">
+                <img src="{{post.imagen}}" alt="" style="max-height:250px; width: 400px;">
+              </a>
+            </div>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' post.id %}" class="post-title">{{post.titulo}}</a>
+              <p>{{post.previa}}...</p>
+              <div class="post-meta">
+                <a href="{% url 'blog_details' post.id %}"><i class="icon_clock_alt"></i> {{post.fecha_publicacion}}</a>
+                <a href="{% url 'blog_details' post.id %}"><i class="icon_chat_alt"></i> {% with post.comments.count as total_comments %}
+                  {{total_comments}} Comentarios
+                   {% endwith %}</a>
+              </div>
+            </div>
+          </div> {% endfor %}
+          {% else %} <h6 style="text-align:center !important; padding: 2rem 0; font-weight:400"> No hay datos que cumplan estos requisitos de Busqueda: <strong> {{request.GET.search}}</strong></h6> 
+           <a href="{% url 'blog' %}" class="btn dento-btn">Volver atras</a>{% endif %}
+
+           {% if posts.has_previous or posts.has_next %}
+            <p>Pagina <strong>{{posts.number}} </strong>de {{posts.paginator.num_pages}}</p>
+            {% endif %}
+
+          <!-- Pagination -->
+          <nav class="dento-pagination mb-100">
+            <ul class="pagination">
+              {% if posts.has_previous %}
+              <a href="?page={{ posts.prev_page_number }}"class="btn dento-btn booking-btn mr-3">Pagina Anterior &laquo;</a> 
+              {% endif %}
+              {% if posts.has_next %}
+              <a href="?page={{ posts.next_page_number }}" class="btn dento-btn booking-btn">Pagina Siguiente &raquo;</a>
+              {% endif %} 
+             
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Dento Sidebar Area -->
+        <div class="col-12 col-lg-4">
+          <div class="dento-sidebar">
+
+            <!-- Single Widget Area -->
+            <div class="single-widget-area search-widget">
+              <form method="get"> 
+                <input type="text" name="search" class="form-control" placeholder="Buscar en el blog ...">
+                <button type="submit"><i class="icon_search"></i></button>
+              </form>
+            </div>
+
+            <!-- Single Widget Area -->
+            <div class="single-widget-area catagories-widget">
+              <h5 class="widget-title">Categorias</h5>
+             
+              <!-- catagories list -->
+              <ul class="catagories-list">
+                <li><a href="/blog ">Todos</a></li>
+                {% for categoria in categorias %}
+                <li ><a href="/blog?categoria={{categoria.id}} "  class="{% if request.path == '/blog?categoria={{categoria.id}}' %} azul {% endif %}">{{categoria.nombre}}</a></li>
+                
+                {% endfor %}
+              </ul>
+              </div>
+
+
+            <!-- Single Widget Area -->
+            <div class="single-widget-area news-widget">
+              <h5 class="widget-title">Recent News</h5>
+
+              {% if posts2 %}
+              {% for post in posts2 %} 
+
+              <!-- Single News Area -->
+              <div class="single-news-area d-flex align-items-center">
+                <div class="blog-thumbnail">
+                  <img src="/{{post.imagen}}" alt="">
+                </div>
+                <div class="blog-content">
+                  <a href="{% url 'blog_details' post.id %}" class="post-title">{{post.titulo}}</a>
+                  <span class="post-date">Publicado hace {{  hoy | sub:post.fecha_publicacion.day}} dias</span>
+                </div>
+              </div>
+              {% endfor %} {% endif %}
+
+
+            </div>
+
+           
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- *****Blog Area End ***** -->
+
+  {% endblock body %}
