@@ -56,7 +56,7 @@
 
                 {% if user.is_authenticated %}
 
-                <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a href="#" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" ><p class="" data-toggle="tooltip" data-placement="bottom" title="Ver o editar perfil"> <img src="{% static '/img/core-img/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png' %}" alt="" width="30px" height="30px">&nbsp;{{user.username | title}}</p></a></li>
+                <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a type="button" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" style="cursor:pointer" ><p class="" > <img src="{% static '/img/core-img/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png' %}" alt="" width="30px" height="30px">&nbsp;{{user.username | title}}</p></a></li>
                 <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}" data-toggle="modal" data-target="#exampleModal2"><a type="button" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión"><p><i class="fa fa-sign-out"></i>&nbsp;</p></a></li>
 
                 {% else %}

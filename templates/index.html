@@ -112,16 +112,15 @@
           <!-- Top Content -->
           <div class="col-6 col-md-9 col-lg-8">
             <div class="top-header-content">
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Cochabamba, 7788569 Bolivia"><i class="fa fa-map-marker"></i> <span>Cochabamba, 7788569 Bolivia</span></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Correo personal del doctor"><i class="fa fa-envelope"></i> <span>drvalmaceda@gmail.com</span></a>
+              <a type="button" data-toggle="tooltip" data-placement="bottom" title="Correo personal del doctor" style="cursor: pointer;"><i class="fa fa-envelope"></i> <span>drvalmaceda@gmail.com</span></a>
             </div>
           </div>
           <!-- Top Header Social Info -->
           <div class="col-6 col-md-3 col-lg-4">
             <div class="top-header-social-info text-right">
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram"></i></a>
+        
+              <a href="https://youTube.com/@drvalmaceda" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Youtube"><i class="fa fa-youtube"></i></a>
+              <a href="https://instagram.com/drvalmaceda" target="blank"  data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram"></i></a>
 
             </div>
           </div>
@@ -172,7 +171,7 @@
                   <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a href="{% url 'contenido-educativo' %}" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}"><p>Contenido educativo</p></a></li>
                   
                   {% if user.is_authenticated %}
-                  <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a href="{% url 'login' %}" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" data-toggle="tooltip" data-placement="bottom" title="Ver o editar perfil"><p><img src="{% static '/img/core-img/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png' %}" alt="" width="30px" height="30px">&nbsp;{{user.username | title}}</p></a></li>
+                  <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a type="button" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}"  style="cursor: pointer;"><p><img src="{% static '/img/core-img/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png' %}" alt="" width="30px" height="30px">&nbsp;{{user.username | title}}</p></a></li>
                   <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}" data-toggle="modal" data-target="#exampleModal"><a type="button" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión"><p><i class="fa fa-sign-out"></i>&nbsp;</p></a></li>
                   {% else %}
                   <li class="{% if request.path == '/login' %} nav-link-active {% endif %}"><a href="{% url 'login' %}" class="{% if request.path == '/login' %} azul {% endif %}"><p>Iniciar sesion</p></a></li>
