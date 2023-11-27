@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
+    'crispy_forms',
+    'crispy_bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'ckeditor',
     'dentistsapp',
+    'user',
     
 ]
 
@@ -81,10 +84,27 @@ WSGI_APPLICATION = 'dentistsweb.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME':'postgres',
+        # 'USER': 'postgres',
+        # 'PASSWORD': '12345',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
+    
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':'DrValamaceda BD',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -127,6 +147,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR/'static'),
 )
 
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
 
 MEDIA_URL= ''
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -139,3 +161,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Jazzmin setting
 
 JAZZMIN_SETTINGS = JAZZMIN_SETTINGS 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
+DJANGORESIZED_DEFAULT_SCALE = 0.5
+DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_KEEP_META = True
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': '.jpg'}
+DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True 
+
+# ============================= EMAIL CONFIG =======================
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'toni0097.97@gmail.com'
+EMAIL_HOST_PASSWORD = 'Antonio_1512'

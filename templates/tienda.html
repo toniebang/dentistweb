@@ -3,15 +3,292 @@
 
 
 
+
+{% block header %}
+
+
+<!-- =========prueba azul header=========== -->
+
+
+
+<div class="container-fluid bg-img bg-cover bg-overlay" style="height: 70vh; padding:0%; background-image: url({% static 'img/bg-img/woman-with-laptop-sofa.jpg' %}); " >
+
+  <div class="main-header-area ">
+    <div class="classy-nav-container px-5 w-100 breakpoint-off" style="background-color: #ffffff;" >
+      <div class="container-fluid">
+        <!-- Classy Menu -->
+        <nav class="classy-navbar justify-content-between container-fluid" id="dentoNav">
+
+          <!-- Logo -->
+          
+          <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/logo-alex.png' %}" style="height: 60px;" alt=""  id="logo"></a>
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span class="" style="color: #00aeef;"></span><span class=""  style="color: #00aeef;"></span><span class=""  style="color: #00aeef;"></span></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu">
+
+            <!-- Close Button -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+
+            <!-- Nav Start -->
+            
+            
+            <div class="classynav text-light">
+              <ul id="nav"> 
+                <ul id="nav"> 
+                  {% if user.is_superuser %}
+                  <li class="text-secondary"><a href="{% url 'admin:index' %}" target="blank"  class="  "><p>admin</p></a></li>
+
+                  {% endif %}
+                
+                <li class="{% if request.path == '/' %} nav-link-active {% endif %}"><a href="{% url 'index' %}"  class="{% if request.path == '/' %} azul {% endif %}"><p>Inicio</p></a></li>
+                <li class="{% if request.path == '/about' %} nav-link-active {% endif %} "><a href="{% url 'about' %}"  class="{% if request.path == '/about' %} azul {% endif %} "><p class=" " >Acerca de mi</p></a></li>
+                <li class="{% if request.path == '/service' %} nav-link-active {% endif %}"><a href="{% url 'service' %}"  class="{% if request.path == '/service' %} azul {% endif %} "><p class="">Mis Servicios</p></a></li>
+                <li class="{% if request.path == '/pricing' %} nav-link-active {% endif %}"><a href="{% url 'pricing' %}"  class="{% if request.path == '/pricing' %} azul {% endif %}"><p class="">Precios</p></a></li>
+                <li class="{% if request.path == '/blog'  %} nav-link-active {% endif %}"><a href="{% url 'blog' %}" class="{% if request.path == '/blog' %} azul {% endif %}"><p class="">Blog</p></a></li>
+                <li class="{% if request.path == '/contact' %} nav-link-active {% endif %}"><a href="{% url 'contact' %}" class="{% if request.path == '/contact' %} azul {% endif %}t"><p class="">Contacto</p></a></li>
+                <li class="{% if request.path == '/contenido_educativo' %} nav-link-active {% endif %}"><a href="{% url 'contenido-educativo' %}" class="{% if request.path == '/contenido_educativo' %} azul {% endif %}"><p>Contenido educativo</p></a></li>
+
+                {% if user.is_authenticated %}
+
+                <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a href="#" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" ><p class="" data-toggle="tooltip" data-placement="bottom" title="Ver o editar perfil"> <img src="{% static '/img/core-img/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png' %}" alt="" width="30px" height="30px">&nbsp;{{user.username | title}}</p></a></li>
+                <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}" data-toggle="modal" data-target="#exampleModal2"><a type="button" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión"><p><i class="fa fa-sign-out"></i>&nbsp;</p></a></li>
+
+                {% else %}
+                <li class="{% if request.path == '/contact' %} nav-link-active {% endif %}"> <a href="{% url 'usuario:crear_usuario' %}" class=" text-light  rounded-0" ><p class="">Registrarse</p></a></li>
+                <li class="{% if request.path == '/contact' %} nav-link-active {% endif %}"> <a href="" class=" text-light  rounded-0" ><p class="">Iniciar Sesion</p></a></li>
+                {% endif %}
+              </ul> 
+            </div>
+            <!-- Nav End -->
+          </div>
+
+          <!-- Booking Now Button -->
+          
+        </nav>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+{% endblock header %}
+
+
+
+<!-- =========prueba azul header=========== -->
 {% block body %}
 
 
-<div class="container d-flex justify-content-center text-center">
-<h1>Tienda Dr Valmaceda</h1>
+
+
+<div class="container-fluid py-5" >
+<div class="container flex-row  justify-content-center text-center mt-5">
+    <h1 class="text-light text-light mt-5" style="font-size: 80px;">CURSOS EN LÍNEA</h1>
+    <p class="text-light" style="font-size: 20px;">¡Encuentra el curso adecuado para ti y Empieza a Aprender hoy mismo!</p>
 </div>
 
-<br>
-<br><br>
+<!-- ==============SEARCH============================================ -->
+
+<div class="container  py-2  d-flex justify-content-end  align-items-center mb-3">
+  <form  method="get" class=" w-100 " >
+  
+         <div class="flex-row justify-content-center  align-items-center">
+          <div class="d-flex mb-5">
+           <input type="search" name="q" value="{{ request.GET.q}}" placeholder="Pulsa para escribir" class="container mx-1 form-control rounded-0 " >
+           <!-- <input type="submit" value="Buscar Curso" class="btn btn-light mx-1 rounded-0" style="color: #00aeef;"> -->
+           <button type="submit" class="btn btn-light rounded-0"><i class="fa fa-search" style="color: #00aeef;"></i></button>
+           <a href="{% url 'contenido-educativo' %}" class="btn btn-light rounded-0 mx-1"><i class="fa fa-refresh" style="color: #00aeef;"></i></a>
+          </div>
+           <div class="container d-flex justify-content-center  align-items-center" style="gap: 8px;">
+            <input type="submit"  value="cursos medicina" name="q" {% if request.GET.q == 'cursos medicina' %} class="btn btn-light btn-sm px-4 mx-0"  style="background-color: #ffffff;"{% else %} class="btn btn-info px-3  btn-sm"  style="background-color: #00aeef;" {% endif %}>
+            <input type="submit"  value="este año" name="q"  {% if request.GET.q == 'este año' %} class="btn btn-light btn-sm px-4 mx-0"  style="background-color: #ffffff;"{% else %} class="btn btn-info px-3  btn-sm"  style="background-color: #00aeef;" {% endif %}>
+            <input type="submit"  value="cirugia" name="q" {% if request.GET.q == 'cirugia' %} class="btn btn-light btn-sm px-4 mx-0"  style="background-color: #ffffff;"{% else %} class="btn btn-info px-3  btn-sm"  style="background-color: #00aeef;" {% endif %}>
+          </div>
+       </div>
+
+  </form>
+</div>
+<!-- <div class="container d-flex justify-content-center  align-items-center ">
+  <a href="" class="btn btn-info px-3 mx-2 btn-sm" style="background-color: #00aeef;">Cursos Medicina</a>
+  <a href="" class="btn btn-info px-3 mx-2 btn-sm" style="background-color: #00aeef;">Categoria 2</a>
+  <a href="" class="btn btn-info px-3 mx-2 btn-sm" style="background-color: #00aeef;">Catergoria 3</a>
+</div> -->
+{% if request.GET.q  %}
+ 
+<div class="container flex-row  justify-content-center text-center mt-5">
+  <p class="text-light h6" style="font-size: 20px;"><i class="fa fa-search"></i> Mostrando resultados de <strong>{{request.GET.q}} ({{cursos_totales}})</strong></p>
+</div> 
+
+{% endif %}
+</div>
+
+</div>
+
+
+
+<div class="container-fluid bg-light mb-4 py-4  flex-row justify-content-center  align-items-center text-center ">
+  <p><a href="" class="h3 text-weight-bold" >Amplia tus oportunidades profesionales en la medicina</a></p> 
+  <p >Aprenda  reciba asesoramiento personal conmigo de manera privada sobre cualquiera de mis cursos</p>
+</div>
+<!-- ========================== -->
+
+{% if cursos %}
+<div class="container container-xl-fluid">
+  <div class="row ">
+
+  
+    {% for curso in cursos %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4  mb-2 ">
+          <div class="card">
+            <a href="{% url 'curso' curso.titulo %}" style="width: 100%; height:fit-content;"><img class="card-img-top" src="{{curso.imagen.url}}" style="width: 100%; height:15rem;" ></a>
+            <div class="card-body">
+                  <a href="{% url 'curso' curso.titulo %}"><h5 class="card-title font-weight-bold ">{{curso.titulo}}</h5></a>
+                  <p class="h7">{{curso.acerca | safe | slice:':150'}}... <a href="{% url 'curso' curso.titulo %}">Leer más</a></p>
+                  <hr>
+                  <div class="d-flex justify-content-between">
+                  <p class=" font-weight-bold">Precio: {{curso.precio}}$</p>
+                <p class=" font-weight-bold text-succes" style="color: rgb(27, 204, 4);">Disponible</p>
+
+                </div>
+                  <p>Instructor: {{curso.tutor}} </p>
+                  <p>Duración: {{curso.duracion}} </p>
+                </div>
+              <a class="btn dento-btn" href="{% url 'curso' curso.titulo %}">Ver Curso</a>
+          </div>
+    </div>
+    {% endfor %}
+
+
+
+  </div>
+
+  <!-- ==============paginator======================= -->
+
+
+  <div class="container flex-row justify-content-center my-5">
+
+  <div class="container ">
+    <p class="text-center">Página <strong>{{cursos.number}} </strong>de {{cursos.paginator.num_pages}}</p>
+  </div> 
+
+    <div class="container d-flex justify-content-center align-items-center text-center">
+               {% if cursos.has_previous %} 
+<div class="">  
+          <a class="m-2 m-xl-3 m-md-3 h5 text-secondary" href="?page=1">Inicio</a>
+          <a class="m-2 m-xl-3 m-md-3 h5 text-secondary" href="??page={{ cursos.previous_page_num_pages }}"><i class="fa fa-angle-left"></i></a>
+</div>     
+  
+                    {% endif %} 
+
+                    <div class="mx-3">
+                     
+                    {% for num in cursos.paginator.page_range %}
+                      {% if cursos.number == num %}
+
+        <a class="m-2 m-xl-3 m-md-3 h4 azul " href="?page={{ num }}">{{num}}</a>
+                            {% elif num > cursos.number|add:'-3' and num < cursos.number|add:'3'%}
+        <a class="m-2 m-xl-3 m-md-3  h5 text-secondary" href="?page={{ num }}">{{num}}</a>
+
+                    {% endif %}
+                    {% endfor %}
+               
+                  </div>
+
+              {% if cursos.has_next %}
+<div class="">
+        <a class="m-2 m-xl-3 m-md-3 h5 text-secondary" href="?page={{ cursos.next_page_number }}"> <i class="fa fa-angle-right"></i></a>
+        <a class="m-2 m-xl-3 m-md-3 h5 text-secondary" href="?page={{ cursos.paginator.num_pages }}">Última</a>
+</div>
+                  {% endif %} 
+</div>
+</div>
+
+{% else %}
+<div class="container">
+  <p class="text-center">No hay cursos que cumplan los requisitos de su búsqueda</p>
+</div>
+
+  
+  {% endif %}
+  
+  {% comment %}
+          <!-- Dento Sidebar Area -->
+          <div class="col-0 col-md-2 col-lg-2">
+            
+            <div class="dento-sidebar">
+  
+              <!-- Single Widget Area -->
+              <div class="single-widget-area search-widget">
+                <form method="get"> 
+                  <input type="text" name="search" class="form-control" placeholder="Buscar curso ...">
+                  <button type="submit"><i class="icon_search"></i></button>
+                </form>
+              </div>
+  
+              <!-- Single Widget Area -->
+              <div class="single-widget-area catagories-widget">
+                <h5 class="widget-title">Categorias</h5>
+               
+                <!-- catagories list -->
+                <ul class="catagories-list">
+                  <li><a href="/blog ">Todos</a></li>
+                  <li><a href="/blog ">Todos</a></li>
+                  <li><a href="/blog ">Todos</a></li>
+                  <!-- {% for categoria in categorias %} -->
+                  <li ><a href="/blog?categoria={{categoria.id}} "  class="{% if request.path == '/blog?categoria={{categoria.id}}' %} azul {% endif %}">gtgggg</a></li>
+                  
+                  <!-- {% endfor %} -->
+                </ul>
+                </div>
+  
+  
+              <!-- Single Widget Area -->
+              <div class="single-widget-area news-widget">
+                <h5 class="widget-title">Cursos mas recientes</h5>
+  
+                <!-- {% if posts2 %}
+                {% for post in posts2 %}  -->
+  
+                <!-- Single News Area -->
+                <div class="single-news-area d-flex align-items-center">
+                  <div class="blog-thumbnail">
+                    <img src="/{{post.imagen}}" alt="">
+                  </div>
+                  <div class="blog-content">
+                    <a href="{% url 'blog_details' post.id %}" class="post-title">dsddd</a>
+                    <span class="post-date">Publicado hace dddd dias</span>
+                  </div>
+                </div>
+                <!-- {% endfor %} {% endif %} -->
+  
+  
+              </div>
+
+            </div>
+          
+          </div>
+          {% endcomment %}
+</div>
+
+
+
+
+
+
 
 
 {% endblock body %}
+
+
+
+
+

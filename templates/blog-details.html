@@ -5,21 +5,23 @@
 
 {% block body %}
 
-<!-- 
+
 {% if messages %}
 {% for message in messages %}
-      <div class="container alert alert-primary alert-dismissible fade show" role="alert"> 
+
+       <div class="container w-50 alert alert-primary alert-dismissible fade show" role="alert">
         <strong>{{message}}</strong>
-       
-       </div>
- {% endfor %} -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+ {% endfor %} 
              
 {% endif %}
 
   
 
   <!-- ***** Breadcrumb Area Start ***** -->
-  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/loyal-medical-banner.jpg' %});">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
@@ -34,7 +36,7 @@
         <div class="col-12">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'blog' %}"><i class="fa fa-home"></i> Inicio</a></li>
               <li class="breadcrumb-item active" aria-current="page">Leer Blog</li>
             </ol>
           </nav>
@@ -43,7 +45,31 @@
     </div>
   </div>
   <!-- ***** Breadcrumb Area End ***** -->
+  {% block modal %}
+    
 
+
+        <!-- Modal LOGOUT-->
+<div class="modal fade rounded-0" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog rounded-0" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesion</h5>
+        <button type="button" class="close rounded-0" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="">¿Estás seguro que desea Cerrar Sesión?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dento-btn bg-light" data-dismiss="modal"><span class="" style="color: #00aeef;">Cerrar</span></button>
+        <a type="button" class="btn dento-btn dento-sm" href="{% url 'logout' %}?next={% url 'index' %} ">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock modal %}
   <!-- ****** Blog Area Start ******* -->
   <section class="dento--blog-area mt-50">
     <div class="container">
@@ -90,11 +116,11 @@
             <div class="comment-content d-flex">
               <!-- Comment Author -->
               <div class="comment-author">
-                <img src="{% static 'img/bg-img/8.jpg' %}" alt="author" style="border-radius: 50%; height:70px; width:80px">
+                <img src="{% static 'img/bg-img/default.jpg' %}" alt="author" style="border-radius: 50%; height:70px; width:80px">
               </div>
               <!-- Comment Meta -->
               <div class="comment-meta" style="overflow: auto;">
-                <a href="#" class="post-author">{{comment.name}} | <span>{{comment.publish_date}}</span></a>
+                <a type="button" class="post-author">@{{comment.name}} | <span>{{comment.publish_date}}</span></a>
                 <p style="word-wrap: break-word;">{{comment.content}}</p>
               </div>
             </div>
@@ -104,7 +130,7 @@
             {% endif %}
           </div>
 
-          <!-- Leave A Reply -->
+          <!-- Leave A Reply -->{% if user.is_authenticated %}
           <div class="contact-form mt-30">
             <h5 class="mb-30">Deja un comentario</h5>
 
@@ -126,7 +152,14 @@
               </div>
             </form>
 
+          </div> {% else %}
+
+          <div class="container">
+            <textarea class="form-control mt-30"></textarea>
+            <p><a href="{% url 'login' %}" style="color: #00aeef;">Iniciar sesion</a>  para comentar</p>
           </div>
+          
+          {% endif %}
         </div>
 
         <!-- Dento Sidebar Area -->

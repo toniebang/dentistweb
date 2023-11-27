@@ -7,7 +7,7 @@
 {% block body %}
 
   <!-- ***** Breadcrumb Area Start ***** -->
-  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/loyal-medical-banner.jpg' %});">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
@@ -22,7 +22,7 @@
         <div class="col-12">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'blog' %}"><i class="fa fa-home"></i> Inicio</a></li>
               <li class="breadcrumb-item active" aria-current="page">Blog</li>
             </ol>
           </nav>
@@ -80,7 +80,31 @@
            {% if posts.has_previous or posts.has_next %}
             <p>Pagina <strong>{{posts.number}} </strong>de {{posts.paginator.num_pages}}</p>
             {% endif %}
+            {% block modal %}
+    
 
+
+            <!-- Modal LOGOUT-->
+    <div class="modal fade rounded-0" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog rounded-0" role="document">
+        <div class="modal-content rounded-0">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesion</h5>
+            <button type="button" class="close rounded-0" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="">¿Estás seguro que desea Cerrar Sesión?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn dento-btn bg-light" data-dismiss="modal"><span class="" style="color: #00aeef;">Cerrar</span></button>
+            <a type="button" class="btn dento-btn dento-sm" href="{% url 'logout' %}?next={% url 'index' %} ">Confirmar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock modal %}
           <!-- Pagination -->
           <nav class="dento-pagination mb-100">
             <ul class="pagination">

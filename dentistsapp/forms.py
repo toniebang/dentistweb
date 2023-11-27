@@ -1,6 +1,17 @@
 from django import forms
-from .models import Mensaje, Cita, Comentario
+from .models import *
 from django.forms import ModelForm, TextInput, EmailInput, Textarea
+
+class CorreosForm(forms.ModelForm):
+    class Meta:
+        model = Correo
+        fields = ('correos',)
+
+        widgets = {
+            'name': EmailInput(attrs={
+                'placeholder':'Correo Electrónico', 'name':"nl-email"
+            })
+        }
 
 class MessageForm(forms.ModelForm):
     class Meta:
@@ -8,13 +19,13 @@ class MessageForm(forms.ModelForm):
         fields = ['name', 'email', 'message']
         widgets = {
             'name': TextInput(attrs={
-                'class': "form-control mb-30", 'placeholder':'Name'
+                'class': "form-control mb-30", 'placeholder':'Nombre'
             }),
             'email': EmailInput(attrs={
-                'class': "form-control mb-30", 'placeholder':'Email'
+                'class': "form-control mb-30", 'placeholder':'Correo'
             }),
             'message': Textarea(attrs={
-                'class': "form-control mb-30", 'placeholder':'Message'
+                'class': "form-control mb-30", 'placeholder':'Mensaje'
             })
         }
 choices = (
@@ -59,19 +70,22 @@ class ApointmentForm(forms.ModelForm):
         })
         
 
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comentario
-        fields =  ['name', 'email', 'content']
+        fields =  ['content']
         widgets = {
-            'name': TextInput(attrs={
-                'class': "form-control mb-30", 'placeholder':'Nombre'
-            }),
-            'email': EmailInput(attrs={
-                'class': "form-control mb-30", 'placeholder':'Correo'
-            }),
+
+
             'content': Textarea(attrs={
                 'class': "form-control mb-30", 'placeholder':'Comentario'
             })
         }
+
+            #         'name': TextInput(attrs={
+            #     'class': "form-control mb-30", 'placeholder':'Nombre'
+            # }),
+
+            #             'email': EmailInput(attrs={
+            #     'class': "form-control mb-30", 'placeholder':'Correo'
+            # }),

@@ -1,0 +1,134 @@
+{% extends 'tienda.html' %}
+{% load static %}
+
+{% block body %}
+
+{% block background %} 
+
+<div class="container-fluid bg-img bg-cover " style="background-color:rgb(26, 26, 26)" > {% endblock %}
+{% comment %}
+<div class="container-fluid " style="background-color:  #00aeef;">
+    <div class="container flex-row  justify-content-center text-center ">
+        <h1 class="text-light">{{cursos.titulo}}</h1>
+        <p class="text-light">¡Encuentra el curso adecuado para ti y Empieza a Aprender hoy mismo!</p>
+    </div>
+</div>
+{% endcomment %}
+
+{% block modal %}
+       <!-- Modal  POLITICAS DE PAGO-->
+       <div class="modal fade" id="politicasModal2" tabindex="-1" role="dialog" aria-labelledby="politicasModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="politicasModalTitle">Politicas Dr Valmaceda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h2 >Política y método de Pago</h2>
+          <p class="w-lg-75">Para completar el pago del curso <strong>{{cursos.titulo}}</strong>, será redirigido al sitio web de Hotmart. Una vez completado el pago, tendrá acceso de por vida al curso en la misma plataforma. Pulsa para continuar. 
+            <br> <br>No se olvide permitir al navegador abrir pestañas emergentes.
+          </p>
+            </div>
+            <div class="modal-footer">
+              <a href="{{cursos.enlace}}" class="btn dento-btn" target="blank">Continuar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endblock modal %}
+
+<div class="container py-4">
+
+  <div class="container bg-img  ">
+    <img src="{{cursos.imagen.url}}" alt="" class="w-25 mb-3" >
+    <h1 class="text-light">{{cursos.titulo}}</h1>
+  </div>
+      <div class="container">
+            <p class="text-light" >{{cursos.acerca | safe}}</p>
+            <p class="text-light h5" >Creado por <span style="color: #00aeef;">{{cursos.tutor}}</span></p>
+            <p class="text-light h6"><i class="fa fa-refresh"></i> Última actualización: {{cursos.fecha_publicacion}}</p>
+            <p class="text-light h6"><i class="fa fa-globe"></i> Idioma: Español</p> <br> <br>
+
+            <p class="text-light h1 font-weight-bold">{{cursos.precio}} US$</p>
+            <a type="button" class="btn dento-btn w-100 text-light"  data-toggle="modal" data-target="#politicasModal2">Comprar Curso</a>
+            <a href="{% url 'contenido-educativo' %}" class="btn dento-btn  mt-2"><i class="fa fa-arrow-left"></i> Volver a los cursos</a>
+      </div>
+</div>
+</div>
+    
+    <!-- =--==--==--==--==--==--==--==--==-- -->
+
+    <div class="conatiner-fluid bg-light py-3">
+      <div class="container border  p-3 mt-3">
+        <p class="h1">Lo que aprenderás</p>
+        <hr>
+        <div class="d-flex justify-content-start alignt-items-center">
+          
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-12 ">
+          
+                <p class="">{{cursos.lecciones|safe}}</p>
+                  
+          </div>
+        </div>
+
+        
+      
+      </div>
+
+      </div>
+
+      <div class="container mt-3">
+        <p class="h3 "><i class=""></i>Este Curso incluye:</p>
+        <p class=""><i class="fa fa-tv"></i> {{cursos.duracion}}</p>
+        <p class=""><i class="fa fa-clock-o"></i> Acceso de por vida</p>
+        <hr>
+      </div>
+
+      <div class="container mt-3">
+        <p class="h3 "><i class=""></i>¿Para quién este curso?</p>
+        <p class="">{{cursos.publico|safe}}</p>
+        <hr>
+      </div>
+
+
+    </div>
+
+    <div class="container ">
+      <h1 class="text-center my-5">Explora nuestros Cursos más recientes</h1> <hr>
+      <div class="row ">
+    
+        {% if otros %}
+        {% for curso in otros %}
+        <div class="col-12 col-md-6 col-lg-4 col-xl-4  my-4 ">
+            <div class="card">
+              <a href="{% url 'curso' curso.titulo %}" style="width: 100%; height:fit-content;"><img class="card-img-top" src="{{curso.imagen.url}}" style="width: 100%; height:15rem;" ></a>
+              <div class="card-body">
+                    <a href="{% url 'curso' curso.titulo %}"><h5 class="card-title font-weight-bold ">{{curso.titulo}}</h5></a>
+                    <p class="h7">{{curso.acerca | safe | slice:':150'}}... <a href="{% url 'curso' curso.titulo %}">Leer más</a></p>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                    <p class=" font-weight-bold">Precio: {{curso.precio}}$</p>
+                  <p class=" font-weight-bold text-succes" style="color: rgb(27, 204, 4);">Disponible</p>
+    
+                  </div>
+                    <p>Instructor: {{curso.tutor}} </p>
+                    <p>Duración: {{curso.duracion}} </p>
+                  </div>
+                <a class="btn dento-btn" href="{% url 'curso' curso.titulo %}">Ver Curso</a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    
+    
+      </div>
+      </div>
+
+
+
+{% endblock body %}

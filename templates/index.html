@@ -4,15 +4,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Dento - Dentist &amp; Medical HTML Template">
+  <meta name="description" content="Dr Valmaceda &amp; Web Page">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Dr Valmaceda</title>
+  <title>
+  {% block title %}
+    Dr Valmaceda
+  {% endblock title %}</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+  <link rel="icon" href="{% static 'img/core-img/icon_alex.png' %}">
 
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -26,7 +29,80 @@
       <div id="dento-load"></div>
     </div>
   </div>
+{% block modal %}
+    
 
+
+        <!-- Modal LOGOUT-->
+<div class="modal fade rounded-0" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog rounded-0" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesion</h5>
+        <button type="button" class="close rounded-0" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="">¿Estás seguro que desea Cerrar Sesión?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dento-btn bg-light" data-dismiss="modal"><span class="" style="color: #00aeef;">Cerrar</span></button>
+        <a type="button" class="btn dento-btn dento-sm" href="{% url 'logout' %}?next={% url 'index' %} ">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock modal %}
+
+  <!-- Modal  POLITICAS-->
+<div class="modal fade" id="politicasModal" tabindex="-1" role="dialog" aria-labelledby="politicasModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="politicasModalTitle">Politicas Dr Valmaceda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 >Política de Privacidad y Términos de Uso:</h2>
+    <p class="w-lg-75">Endrvalmaceda.com, valoramos y respetamos la privacidad de nuestros visitantes y
+        usuarios. Esta Política de Privacidad y Términos de Uso está diseñada para proporcionarte
+        información detallada sobre cómo recopilamos, utilizamos y protegemos tus datos
+        personales, y también describe las reglas y regulaciones que rigen el uso de nuestro sitio
+        web.
+        Política de Privacidad:
+        Recopilación de Datos: Recolectamos información personal de manera voluntaria a través
+        de formularios de contacto y registros de consulta. Los datos recopilados incluyen nombre,
+        dirección de correo electrónico y otra información relevante para proporcionar nuestros
+        servicios.
+        Uso de la Información: Utilizamos la información recopilada para proporcionar servicios de
+        consulta en línea y recursos de salud. No compartimos ni vendemos tus datos personales a
+        terceros.
+        Seguridad de Datos: Tomamos medidas para proteger tus datos personales y mantener la
+        confidencialidad. Nuestra plataforma cumple con las normativas de seguridad de datos
+        aplicables.
+        Cookies: Utilizamos cookies para mejorar la experiencia del usuario en nuestro sitio web.
+        Puedes optar por desactivar las cookies en la configuración de tu navegador.
+        Términos de Uso:
+        Uso Apropiado: Los usuarios se comprometen a utilizar nuestro sitio web de manera
+        apropiada y respetuosa, sin infringir los derechos de otros usuarios o participantes.
+        Propiedad Intelectual: Todo el contenido, incluyendo textos, imágenes y recursos
+        descargables, está protegido por derechos de autor y es propiedad de [nombre de tu sitio
+        web] a menos que se indique lo contrario.
+        Enlaces Externos: Nuestro sitio web puede contener enlaces a sitios web externos. No
+        somos responsables de las prácticas de privacidad o contenido de estos sitios. <br> Cambios en las Políticas: Nos reservamos el derecho de actualizar o modificar nuestras
+        Políticas de Privacidad y Términos de Uso en cualquier momento. Cualquier cambio se
+        reflejará en esta página
+    </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dento-btn" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- ***** Header Area Start ***** -->
   <header class="header-area">
     <!-- Top Header Area -->
@@ -36,8 +112,8 @@
           <!-- Top Content -->
           <div class="col-6 col-md-9 col-lg-8">
             <div class="top-header-content">
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="28 Jackson Street, Chicago, 7788569 USA"><i class="fa fa-map-marker"></i> <span>28 Jackson Street, 7788569 Bolivia</span></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="info.dento@gmail.com"><i class="fa fa-envelope"></i> <span>drvalmaceda@gmail.com</span></a>
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Cochabamba, 7788569 Bolivia"><i class="fa fa-map-marker"></i> <span>Cochabamba, 7788569 Bolivia</span></a>
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Correo personal del doctor"><i class="fa fa-envelope"></i> <span>drvalmaceda@gmail.com</span></a>
             </div>
           </div>
           <!-- Top Header Social Info -->
@@ -45,25 +121,27 @@
             <div class="top-header-social-info text-right">
               <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
               <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram"></i></a>
+
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Top Header End -->
-
+   
+    {% block header %}
     <!-- Main Header Start -->
     <div class="main-header-area">
       <div class="classy-nav-container breakpoint-off">
-        <div class="container">
+        <div class="container-fluid">
           <!-- Classy Menu -->
-          <nav class="classy-navbar justify-content-between" id="dentoNav">
+          <nav class="classy-navbar justify-content-between container-fluid" id="dentoNav">
 
             <!-- Logo -->
-            <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/logo-alex.png' %}" style="height: 130px;" alt=""></a>
+            
+            <a class="nav-brand ml-md-5" href="{% url 'index' %}"><img src="{% static 'img/core-img/logo-alex.png' %}" style="height: 60px;" alt=""  id="logo"></a>
+
 
             <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
@@ -81,45 +159,90 @@
               <!-- Nav Start -->
               <div class="classynav">
                 <ul id="nav"> 
+                  {% if user.is_superuser %}
+                  <li class="text-secondary"><a href="{% url 'admin:index' %}" target="blank"  class="  "><p>admin</p></a></li>
+
+                  {% endif %}
+                  <li class="{% if request.path == '/' %} nav-link-active {% endif %}"><a href="{% url 'index' %}"  class="{% if request.path == '/' %} azul {% endif %}"><p>Inicio</p></a></li>
+                  <li class="{% if request.path == '/acerca' %} nav-link-active {% endif %}"><a href="{% url 'about' %}"  class="{% if request.path == '/about' %} azul {% endif %}"><p>Acerca de mi</p></a></li>
+                  <li class="{% if request.path == '/servicios' %} nav-link-active {% endif %}"><a href="{% url 'service' %}"  class="{% if request.path == '/service' %} azul {% endif %}"><p>Mis Servicios</p></a></li>
+                  <li class="{% if request.path == '/precios' %} nav-link-active {% endif %}"><a href="{% url 'pricing' %}"  class="{% if request.path == '/pricing' %} azul {% endif %}"><p>Precios</p></a></li>
+                  <li class="{% if request.path == '/blog'  %} nav-link-active {% endif %}"><a href="{% url 'blog' %}" class="{% if request.path == '/blog' %} azul {% endif %}" ><p>Blog</p></a></li>
+                  <li class="{% if request.path == '/contacto' %} nav-link-active {% endif %}"><a href="{% url 'contact' %}" class="{% if request.path == '/contact' %} azul {% endif %}"><p>Contacto</p></a></li>
+                  <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a href="{% url 'contenido-educativo' %}" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}"><p>Contenido educativo</p></a></li>
                   
-                 
-                  <li class="{% if request.path == '/about' %} nav-link-active {% endif %}"><a href="{% url 'about' %}"  class="{% if request.path == '/about' %} azul {% endif %}">Acerca de mi</a></li>
-                  <li class="{% if request.path == '/service' %} nav-link-active {% endif %}"><a href="{% url 'service' %}"  class="{% if request.path == '/service' %} azul {% endif %}">Mis Servicios</a></li>
-                  <li class="{% if request.path == '/pricing' %} nav-link-active {% endif %}"><a href="{% url 'pricing' %}"  class="{% if request.path == '/pricing' %} azul {% endif %}">Precios</a></li>
-                  <li class="{% if request.path == '/blog'  %} nav-link-active {% endif %}"><a href="{% url 'blog' %}" class="{% if request.path == '/blog' %} azul {% endif %}" >Blog</a></li>
-                  <li class="{% if request.path == '/contact' %} nav-link-active {% endif %}"><a href="{% url 'contact' %}" class="{% if request.path == '/contact' %} azul {% endif %}">Contacto</a></li>
-                  <li class="{% if request.path == '/tienda' %} nav-link-active {% endif %}"><a href="{% url 'tienda' %}" class="{% if request.path == '/tienda' %} azul {% endif %}">Tienda</a></li>
+                  {% if user.is_authenticated %}
+                  <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}"><a href="{% url 'login' %}" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" data-toggle="tooltip" data-placement="bottom" title="Ver o editar perfil"><p><img src="{% static '/img/core-img/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png' %}" alt="" width="30px" height="30px">&nbsp;{{user.username | title}}</p></a></li>
+                  <li class="{% if request.path == '/contenido-educativo' %} nav-link-active {% endif %}" data-toggle="modal" data-target="#exampleModal"><a type="button" class="{% if request.path == '/contenido-educativo' %} azul {% endif %}" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión"><p><i class="fa fa-sign-out"></i>&nbsp;</p></a></li>
+                  {% else %}
+                  <li class="{% if request.path == '/login' %} nav-link-active {% endif %}"><a href="{% url 'login' %}" class="{% if request.path == '/login' %} azul {% endif %}"><p>Iniciar sesion</p></a></li>
+
+                  {% endif %}
                 </ul> 
               </div>
               <!-- Nav End -->
             </div>
 
             <!-- Booking Now Button -->
-            <a href="{% url 'index' %}#apointment" class="btn dento-btn booking-btn">Pedir Cita</a>
+            {% if user.is_authenticated %}
+            
+          {% else %}
+
+            {% endif %}
           </nav>
         </div>
       </div>
     </div>
+
+    
+   
+
   </header>
+  {% endblock header %}
+
+ 
+
+  {% block body %}
 
   {% if messages %}
   {% for message in messages %}
-  {% if message.tags == 'error' %} <div class="container alert alert-danger alert-dismissible fade show" role="alert"> 
-    <strong>{{message}}</strong>
-    
-   </div>
+  {% if message.tags == 'error' %} 
+
+  <div class="container alert alert-warning text-center  rounded-0 fade show" role="alert" >
+    <strong class="text-light">{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
    {% else %}
-        <div class="container alert alert-primary alert-dismissible fade show" role="alert"> 
-          <strong>{{message}}</strong>
-         
-         </div>{% endif %}
+
+   <div class="container alert text-center  rounded-0 fade show" role="alert" style="background-color: #00aeef;">
+    <strong class="text-light">{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+   {% endif %}
+
+
    {% endfor %}
+
    
 
                
 {% endif %}
 
-  {% block body %}
+  <nav style="background: rgb(15,245,223);
+  background: linear-gradient(90deg, rgba(15,245,223,1) 0%, rgba(0,174,239,1) 100%);"
+   class="navbar d-flex container-fluid justify-content-center align-items-center" data-bs-theme="">
+    
+    <a class="text-center text-light  font-weight-bold h6 mx-4" href="{% url 'contenido-educativo' %}" data-toggle="tooltip" data-placement="bottom" title="Ver Cursos"><i class="fa fa-paper-plane"></i> ¡Descubre mis cursos en Línea y descarga material didáctico!</a>
+
+    {% if user.is_authenticated %}
+    {% else %}
+    <div>
+    <a class="text-center text-secondary font-weight-light h6 btn btn-light btn-sm rounded-0" href="{% url 'login' %}"> Iniciar Sesion</a> 
+    <a class="text-center text-secondary h6 btn btn-light btn-sm rounded-0" href="{% url 'usuario:crear_usuario' %}"> Crear cuenta</a>
+    <!-- Navbar content -->
+  </div>
+  {% endif %}
+  </nav>
   <!-- ***** Header Area End ***** -->
 
   <!-- ***** Welcome Area Start ***** -->
@@ -127,17 +250,22 @@
     <!-- Welcome Slides -->
     <div class="welcome-slides owl-carousel">
       <!-- Single Welcome Slide -->
-      <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url({% static 'img/bg-img/33.jpg' %});">
+      <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url({% static 'img/bg-img/IMG-20230831-WA0000.jpg' %});">
         <div class="container h-100">
           <div class="row h-100 align-items-center">
             <div class="col-12">
               <!-- Welcome Text -->
               <div class="welcome-text text-center">
+                {% if user.is_authenticated %}
+                <div class="container">
+                  <h2 class="text-center text-light font-weight-bold "> ¡Hola {{user.username}}!</h2>
+                </div>
+                {% endif %}
                 <h2 data-animation="fadeInUp" data-delay="100ms">Creemos que todos deberían tener un fácil acceso a la sanidad</h2>
-                <p data-animation="fadeInUp" data-delay="300ms">Una descripcion cualquiera por aqui u ofertas
+                <p data-animation="fadeInUp" data-delay="300ms">Pide tu cita hoy mismo
                  </p>
                 <div class="welcome-btn-group">
-                  <a href="{% url 'tienda' %}" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Visitar Tienda</a>
+                  <a href="{% url 'index' %}#apointment" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="700ms">Pedir cita</a>
                   <a href="{% url 'contact' %}" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Contáctanos</a>
                 </div>
               </div>
@@ -153,13 +281,29 @@
             <div class="col-12">
               <!-- Welcome Text -->
               <div class="welcome-text text-center">
-                <h2 data-animation="fadeInDown" data-delay="100ms">Creemos que todos deberían tener un fácil acceso a la sanidad</h2>
-                <p data-animation="fadeInDown" data-delay="300ms">As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                  offer you.</p>
-                <div class="welcome-btn-group">
-                  <a href="{% url 'tienda' %}" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Visitar Tienda</a>
-                  <a href="{% url 'contact' %}" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Contáctanos</a>
+                {% if user.is_authenticated %}
+                <div class="container">
+                  <h2 class="text-center text-light font-weight-bold "> ¡Bienvenido!</h2>
                 </div>
+                {% endif %}
+                  {% if user.is_authenticated %}
+                  <div class="welcome-btn-group">
+                    <h2 data-animation="fadeInDown" data-delay="100ms">¡Encuentra cursos y Fórmate desde Hoy!</h2>
+                  <p data-animation="fadeInDown" data-delay="300ms">En nuestra sección de educación podrás encontar también libros y todo tipo de material de estudio </p>
+                  </div>
+                  <div class="welcome-btn-group">
+                    <a href="{% url 'contenido-educativo' %}" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Ver Cursos</a>
+                  </div>
+                  {% else %}
+                  <div class="welcome-btn-group">
+                    <h2 data-animation="fadeInDown" data-delay="700ms">Forma parte del equipo hoy mismo</h2>
+                  <p data-animation="fadeInDown" data-delay="600ms">Crea una cuenta y descubre nuestro material educativo, haz consultas y ¡pide citas desde este portal! </p>
+                  </div>
+                <div class="welcome-btn-group">
+                  <a href="{% url 'login' %}" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Inicia Sesión</a>
+                  <a href="{% url 'usuario:crear_usuario' %}" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Crea una cuenta</a>
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -169,27 +313,38 @@
   </section>
   <!-- ***** Welcome Area End ***** -->
 
+
+
+<!-- Modal LOGOUT-->
+<div class="modal fade rounded-0" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog rounded-0" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesion</h5>
+        <button type="button" class="close rounded-0" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="">¿Estás seguro que desea Cerrar Sesión?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dento-btn bg-light" data-dismiss="modal"><span class="" style="color: #00aeef;">Cerrar</span></button>
+        <a type="button" class="btn dento-btn dento-sm" href="{% url 'logout' %}?next={% url 'index' %} ">Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <!-- ****** About Us Area Start ******* -->
   <section class="dento-about-us-area section-padding-100-0">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row align-items-left">
         <!-- About Us Thumbnail -->
         <div class="col-12 col-md-6">
           <div class="about-us-thumbnail mb-50">
             <img src="{% static 'img/bg-img/alex.jpg' %}" alt="">
-          </div>
-        </div>
-        <!-- About Content -->
-        <div class="col-12 col-md-6">
-          <div class="about-us-content mb-50">
-            <!-- Section Heading -->
-            <div class="section-heading">
-              <h2>Doctor Valmaceda</h2>
-              <div class="line"></div>
-            </div>
-            <p>Vestibulum condimentum, risus sedones honcus rutrum, salah lacus mollis zurna, nec finibusmi velit advertisis. Proin vitae odin quis magna aliquet laciniae. Etiam auctor, nisi vel. Pellentesque ultrices nisl quam iaculis, nec pulvinar
-              augue.</p>
-
             <!-- Single Skills Area -->
             <div class="single-skills-area mt-30">
               <h6>Experiencia</h6>
@@ -197,10 +352,10 @@
                 <span class="tip"></span>
                 <span class="fill" data-percentage="80"></span>
               </div>
-            </div>
 
-            <!-- Single Skills Area -->
-            <div class="single-skills-area mt-30">
+            </div>
+             <!-- Single Skills Area -->
+             <div class="single-skills-area mt-30">
               <h6>Equipamiento moderno</h6>
               <div id="bar2" class="barfiller">
                 <span class="tip"></span>
@@ -218,7 +373,48 @@
             </div>
           </div>
         </div>
+        <!-- About Content -->
+        <div class="col-12 col-md-6">
+          <div class="about-us-content mb-50">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h2>Doctor Valmaceda</h2>
+              <div class="line"></div>
+            </div>
+            <p>¡Bienvenido a mi rincón de la salud en línea! Soy el Dr.Valmaceda, un médico apasionado
+              por brindar atención médica de calidad y orientación en línea.
+              Mi viaje en el campo de la medicina comenzó hace muchos años, y a lo largo de los años
+              he tenido el privilegio de ayudar a innumerables personas a mejorar su bienestar y calidad
+              de vida. Mi enfoque se centra en comprender profundamente las necesidades de mis
+              pacientes y proporcionar soluciones efectivas.
+              Mis credenciales y experiencia varios años trabajando como promotor de la salud y
+              capacitador me han permitido abordar una amplia gama de desafíos de salud. Creo
+              firmemente en la importancia de la educación y la prevención como base para una vida
+              saludable. Por esta razón, he dedicado una parte significativa de mi carrera a la creación de
+              contenido educativo en línea, incluyendo cursos online, ebooks, seminarios y membresías
+              sobre estilo de vida saludable, etc.].
+              Mi compromiso con la medicina no se limita únicamente a la práctica clínica. Como
+              Promotor y Capacitador, también he tenido la oportunidad departicipar en programas de
+              salud pública en varios países en Sudamérica y Europa.
+              Mi objetivo con este sitio web es proporcionar orientación médica confiable y recursos
+              valiosos para aquellos que buscan mejorar su salud y bienestar. Creo que la información
+              precisa y la comprensión de los aspectos de la salud son esenciales para tomar decisiones
+              informadas y llevar una vida plena.
+              A lo largo de mi carrera, he aprendido que la comunicación abierta y el respeto por cada
+              individuo son fundamentales para establecer relaciones de confianza con mis pacientes y
+              seguidores en línea. Aquí, en mi espacio virtual, siempre te recibiré con los brazos abiertos
+              y una mente dispuesta a ayudarte en tu viaje hacia una vida más saludable. Te invito a explorar los recursos y servicios que ofrezco. Si tienes alguna pregunta o
+              necesitas orientación médica, no dudes en ponerte en contacto conmigo. Estoy aquí para
+              ayudarte a alcanzar tus metas de salud y bienestar.
+              Gracias por visitar mi sitio web, y espero que encuentres la información y apoyo que estás
+              buscando.
+              Con gratitud,
+              Dr. Valmaceda</p>
+          </div>
+        </div>
       </div>
+
+
     </div>
   </section>
   <!-- ****** About Us Area End ****** -->
@@ -235,8 +431,8 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="single-cta text-center mt-50 mb-100">
             <i class="icon_genius"></i>
-            <h2><span class="counter">20</span></h2>
-            <h5>Años de experiencia</h5>
+            <h2><span class="counter">10</span>+</h2>
+            <h5>Años promoviendo la salud</h5>
           </div>
         </div>
 
@@ -245,7 +441,7 @@
           <div class="single-cta text-center mt-50 mb-100">
             <i class="icon_heart_alt"></i>
             <h2><span class="counter">700</span>+</h2>
-            <h5>Pacientes felices</h5>
+            <h5>Estudiantes</h5>
           </div>
         </div>
 
@@ -253,8 +449,8 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="single-cta text-center mt-50 mb-100">
             <i class="icon_book_alt"></i>
-            <h2><span class="counter">120</span></h2>
-            <h5>Certificados</h5>
+            <h2><span class="counter">40</span>+</h2>
+            <h5>Libros y Cursos publicados</h5>
           </div>
         </div>
 
@@ -262,8 +458,8 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="single-cta text-center mt-50 mb-100">
             <i class="icon_id"></i>
-            <h2><span class="counter">40</span>+</h2>
-            <h5>Cirujanos</h5>
+            <h2><span class="counter">120</span>+</h2>
+            <h5>Enfermedades tratadas</h5>
           </div>
         </div>
       </div>
@@ -280,7 +476,7 @@
           <div class="service-content mb-30">
             <!-- Section Heading -->
             <div class="section-heading white">
-              <h2>Nuestros servicios</h2>
+              <h2>Mis Servicios</h2>
               <div class="line"></div>
             </div>
 
@@ -288,32 +484,32 @@
               <!-- Single Service -->
               <div class="col-6 col-md-4">
                 <div class="single-service mb-70">
-                  <img src="{% static 'img/core-img/s1.png' %}" alt="">
-                  <h6>Teeth Whitening</h6>
+                  <img src="{% static 'img/core-img/consultas.png' %}" alt="">
+                  <h6>Consultas Online</h6>
                 </div>
               </div>
 
               <!-- Single Service -->
               <div class="col-6 col-md-4">
                 <div class="single-service mb-70">
-                  <img src="{% static 'img/core-img/s2.png' %}" alt="">
-                  <h6>Missing Teeth</h6>
+                  <img src="{% static 'img/core-img/plan.png' %}" alt="">
+                  <h6>Plan de tratamiento natural personalizado</h6>
                 </div>
               </div>
 
               <!-- Single Service -->
               <div class="col-6 col-md-4">
                 <div class="single-service mb-70">
-                  <img src="{% static 'img/core-img/s3.png' %}" alt="">
-                  <h6>Teeth Whitening</h6>
+                  <img src="{% static 'img/core-img/dieta.png' %}" alt="">
+                  <h6>Dieta personalizada</h6>
                 </div>
               </div>
 
               <!-- Single Service -->
               <div class="col-6 col-md-4">
                 <div class="single-service mb-70">
-                  <img src="{% static 'img/core-img/s4.png' %}" alt="">
-                  <h6>Cosmetic Dentistry</h6>
+                  <img src="{% static 'img/core-img/membresia.png' %}" alt="">
+                  <h6>Membresía Cuerpo Saludabe</h6>
                 </div>
               </div>
 
@@ -321,17 +517,11 @@
               <div class="col-6 col-md-4">
                 <div class="single-service mb-70">
                   <img src="{% static 'img/core-img/s5.png' %}" alt="">
-                  <h6>Examination</h6>
+                  <h6>Club Doctor Valmaceda</h6>
                 </div>
               </div>
 
-              <!-- Single Service -->
-              <div class="col-6 col-md-4">
-                <div class="single-service mb-70">
-                  <img src="{% static 'img/core-img/s1.png' %}" alt="">
-                  <h6>Dolor de muela</h6>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>
@@ -339,9 +529,11 @@
         <!-- Video Area -->
         <div class="col-12 col-lg-6">
           <div class="dento-video-area mb-100">
-            <img src="{% static  'img/bg-img/14.jpg' %}" alt="">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/w0dRm7TrfVQ?si=Dm3-nKtIOa_HNk9Y"
+             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+              encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <!-- Play Button -->
-            <a href="#" class="video-play-button"><i class="fa fa-play" aria-hidden="true"></i></a>
+           
           </div>
         </div>
       </div>
@@ -356,7 +548,7 @@
         <!-- Section Heading -->
         <div class="col-12">
           <div class="section-heading text-center">
-            <h2>Pricing</h2>
+            <h2>Precios</h2>
             <div class="line"></div>
           </div>
         </div>
@@ -368,69 +560,28 @@
             <table class="table table-borderless mb-0">
               <thead>
                 <tr>
-                  <th scope="col">Service Names</th>
-                  <th scope="col">Stage</th>
-                  <th scope="col">Price</th>
+                  <th scope="col">Servicio</th>
+                  <th scope="col">Unidad</th>
+                  <th scope="col">Precio</th>
                 </tr>
               </thead>
               <tbody>
+                {% if servicios %}
+                {% for servicio in servicios %}
                 <tr>
-                  <th scope="row">Teeth Whitening Service at home</th>
-                  <td>1 times</td>
-                  <td>$115.00</td>
+                  <th scope="row">{{servicio.nombre}}</th>
+                  <td>{{servicio.unidad}}</td>
+                  <td>${{servicio.precio}}</td>
                 </tr>
-                <tr>
-                  <th scope="row">Teeth Whitening Service at Dental Clinic</th>
-                  <td>1 times</td>
-                  <td>$100.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Ceramic crowns and fillings Dental porcelain</th>
-                  <td>1 times</td>
-                  <td>$99.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Remove crowns, bridges Service</th>
-                  <td>1 tooth</td>
-                  <td>$50.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Covering the recession of the gums</th>
-                  <td>1 times</td>
-                  <td>$400.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Consultation, impressions and preparation of models</th>
-                  <td>1 times</td>
-                  <td>$35.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Removal of an old inlay, old crown</th>
-                  <td>1 times</td>
-                  <td>$99.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Overlay teeth whitening ( 2 arches)</th>
-                  <td>1 times</td>
-                  <td>$170.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Standard porcelain and zirconium crown on implant</th>
-                  <td>1 tooth</td>
-                  <td>$499.00</td>
-                </tr>
-                <tr>
-                  <th scope="row">Implantation of an implant (price depends on system used)</th>
-                  <td>1 tooth</td>
-                  <td>$600.00</td>
-                </tr>
+                {% endfor %}
+                {% endif %}
               </tbody>
             </table>
           </div>
         </div>
 
-        
-      </div>
+
+      
     </div>
   </section>
   <!-- Dento Pricing Table Area End -->
@@ -442,7 +593,10 @@
         <!-- Section Heading -->
         <div class="col-12">
           <div class="section-heading text-center white">
-            <h2>Hacer una reserva</h2>
+            <h2>Pedir Cita</h2>
+            <p class="text-light h4">No esperes más
+            </p>
+            <p class="text-light">Rellena estos datos y nosotros nos pondremos en contacto lo mas pronto posible. ¡Saludos!</p>
             <div class="line"></div>
           </div>
         </div>
@@ -492,7 +646,7 @@
                   </div>
                 </div>
                 <div class="col-12 text-center">
-                  <button type="submit" class="btn dento-btn">Reservar</button> <br>
+                  <button type="submit" class="btn dento-btn">Confirmar Cita</button> <br>
                 </div>
                 <br>
                 <br>
@@ -500,12 +654,12 @@
                 {% if messages %}
                 {% for message in messages %}
                 {% if message.tags == 'error' %} <div class="container alert alert-danger alert-dismissible fade show" role="alert"> 
-                  <strong class="text-center">{{message}}</strong>
+                  <p class="text-center ">{{message}}</p>
                   
                  </div>
                  {% else %}
-                      <div class="container alert alert-primary alert-dismissible fade show text-center w-50" role="alert"> 
-                        <strong class="text-center">{{message}}</strong>
+                      <div class="container alert alert-primary alert-dismissible fade show text-center w-75" role="alert"> 
+                        <p class="text-center"><i class="fas fa-success"></i>{{message}}</p>
                        
                        </div>
                        {% endif %}
@@ -525,9 +679,9 @@
 
 
   <!-- ***** Dento Dentist Area Start ***** -->
-  {% include 'doctors.html' %}
+  {% include 'cursos.html' %}
   <!-- ***** Dento Dentist Area End ***** -->
-
+  <br>
    <!-- ***** Testimonials Area Start ***** -->
   {% include 'testimonial.html' %}
   <br><br>
@@ -583,14 +737,14 @@
   {% endblock body %}
 
   <!-- ***** Footer Area Start ***** -->
-  <footer class="footer-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/3.jpg' %});">
+  <footer class="footer-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/IMG-20230831-WA0000.jpg' %});">
     <div class="container">
       <div class="row">
         <!-- Single Footer Widget -->
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="single-footer-widget">
-            <a href="{% url 'index' %}" class="d-block mb-4"><img src="{% static 'img/core-img/logo-alex.png' %}" style="height: 170px;" alt=""></a>
-            <p>Etiam sutor risus, dapibus act elefend katen, lacinia sitamet denim. Mauris sagittis kansa interdum dignissim.</p>
+            <a href="{% url 'index' %}" class="d-block mb-4"><img src="{% static 'img/core-img/logo-blanco.png' %}" style="height: 60px;" alt=""></a>
+            <p>En Dr Valmaceda nos complace ayudar y acompañar a los pacientes.</p>
             <div class="footer-contact">
               <p><i class="icon_pin"></i> Bolivia, Calle 2 </p>
               <p><i class="icon_phone"></i> +84. 2252. 2250. 122</p>
@@ -616,6 +770,11 @@
           </div>
         </div>
 
+       
+
+
+
+
         <!-- Single Footer Widget -->
         <div class="col-12 col-sm-6 col-lg">
           <div class="single-footer-widget">
@@ -625,10 +784,9 @@
             <!-- Quick Links Nav -->
             <nav>
               <ul class="quick-links  d-flex justify-content-center align-items-start h-75">
-                <li><a href="{% url 'about' %}">Acerca de nosotros</a></li>
-                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'about' %}">Acerca de mí</a></li>
                 <li><a href="{% url 'contact' %}">Contacto</a></li>
-                <li><a href="#">Politicas</a></li>
+                <li><a style="cursor: pointer;" data-toggle="modal" data-target="#politicasModal" >Politicas</a></li>
                 <li><a href="{% url 'blog' %}">Noticias</a></li>
                 <li><a href="{% url 'service' %}">Servicios</a></li>
               </ul>
@@ -642,22 +800,17 @@
             <!-- Widget Title -->
             <h5 class="widget-title">Novedades</h5>
 
-            <p>Te enviaremos rebajas y novedades por correo</p>
+            <p>Te enviaremos ofertas, rebajas y novedades por correo</p>
             <!-- Newsletter Form -->
             <div class="footer-newsletter-form">
-              <form action="#" method="post"> 
-                <input type="email" name="nl-email" value="" placeholder="Email Address">
-                <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-              </form>
+            {% include 'correos.html' %}
             </div>
-
             <!-- Social Info -->
             <div class="footer-social-info">
               <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
               <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Google Plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Google Plus"><i class="fa fa-instagram"></i></a>
+
             </div>
           </div>
         </div>
@@ -665,12 +818,12 @@
     </div>
 
     <!-- Copywrite Area -->
-    <div class="container">
+    <div class="container py-3">
       <div class="row">
         <div class="col-12">
           <div class="copywrite-content">
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | Antonio Ebang Tome </a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | Web desarrollada por Antonio Ebang Tomé </a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>

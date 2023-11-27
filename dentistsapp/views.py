@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Doctores, Mensaje, Cita, Categoria, Comentario
-from .forms import MessageForm, ApointmentForm, CommentForm
+from .models import *
+from .forms import MessageForm, ApointmentForm, CommentForm, CorreosForm
 from django.core.paginator import Paginator
 from django.contrib import messages
 from datetime import datetime
@@ -8,8 +8,9 @@ from django.db.models import Q
 
 # Create your views here.
 def index(request):
+    servicios = Precio.objects.all()
     posts = Post.objects.all().order_by('-fecha_publicacion')
-    doctores = Doctores.objects.all()
+    cursos = Curso.objects.all().order_by('-fecha_publicacion')[:3]
     apointment = Cita.objects.all()
     apointmentform = ApointmentForm
     if request.method == 'POST':
@@ -32,8 +33,9 @@ def index(request):
 
     context={
         'posts': posts,
-        'doctores': doctores,
-        'apointmentform': apointmentform
+        'cursos': cursos,
+        'apointmentform': apointmentform,
+        'servicios': servicios
     }
     return render (request, 'index.html', context=context)
 
@@ -44,7 +46,9 @@ def about(request):
 
 
 def pricing(request):
-    return render (request, 'pricing.html')
+    servicios = Precio.objects.all()
+
+    return render (request, 'pricing.html', {'servicios': servicios})
 
 
 def blog(request):
@@ -123,7 +127,7 @@ def service(request):
 
 
 # =========================================
-#            BLOG_DETAILS
+#            BLOG_DETALLES
 # =========================================  
 
 
@@ -153,12 +157,13 @@ def blog_details(request, id):
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.post = post_c
+            new_comment.name = request.user
             new_comment.save()
    
-            messages.success(request, 'Se agrego su comentario correctamente')
+            messages.success(request, 'Se agregó su comentario correctamente')
             return redirect('blog_details', posts.id)
         else:
-             messages.success(request, 'Hubo un error al postear su comentario. Reintentalo')
+             messages.success(request, 'Hubo un error al postear su comentario. Reinténtalo')
              return redirect('blog_details', posts.id)
         
 
@@ -227,7 +232,7 @@ def blog_details(request, id):
     return render (request, 'blog-details.html', context=context)
 
 # =========================================
-#             END BLOG_DETAILS 
+#             TERMINA BLOG_DETAILS 
 # =========================================  
 
 def contact(request):
@@ -240,17 +245,17 @@ def contact(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
             #se puede enviar un email con estos datos
-            messages.success(request, f'Gracias {name}!  Se envio su mensaje correctamente')
+            messages.success(request, f'Gracias {name}!  Se envió su mensaje correctamente')
             redirect ('sent')
         else:
-            messages.error(request, 'ocurrio un error en el formulario. Por favor revise sus credenciales e intentalo de nuevo')
+            messages.error(request, 'ocurrió un error en el formulario. Por favor revise sus credenciales e inténtalo de nuevo')
             redirect ('contact')
     return render (request, 'contact.html', {'form':form})
 
 
 def sent(request):
     if messages:
-        messages.success(request, f'Gracias !  Se envio su mensaje correctamente')
+        messages.success(request, f'Gracias !  Se envió su mensaje correctamente')
         redirect ('contact')
     
     return render (request, 'message_confirm.html')
@@ -262,5 +267,61 @@ def sent(request):
 # =========================================            
 
 
-def tienda(request):
-    return render (request, 'tienda.html')
+def contenido_educativo(request):
+    cursos = Curso.objects.all().order_by('-fecha_publicacion')
+    # busqueda = request.GET.get('q')
+    # datos_totales = datos.count()
+
+    paginas = Paginator(cursos, 6)
+    page = request.GET.get('page') 
+    cursos = paginas.get_page(page)
+    busqueda = request.GET.get('q')
+
+
+    if busqueda:
+          cursos = Curso.objects.filter(
+             Q(titulo__icontains = busqueda) |  Q(acerca__icontains = busqueda)  | Q(lecciones__icontains = busqueda) 
+         ).distinct()
+          cursos_totales = cursos.count()
+          
+          paginas = Paginator(cursos, 6)
+          page = request.GET.get('page') 
+          cursos = paginas.get_page(page)
+
+
+          return render (request, 'tienda.html', {'cursos': cursos, 'cursos_totales': cursos_totales})
+    else:
+        pass
+
+    context = {
+        'cursos' : cursos,
+    }
+
+    return render (request, 'tienda.html', context=context)
+
+
+def curso(request, titulo):
+    cursos = Curso.objects.get(titulo=titulo)
+    otros_cursos = Curso.objects.all().order_by('-fecha_publicacion')[:3]
+    context = {
+        'cursos': cursos,
+        'otros': otros_cursos,
+    }
+
+    return render (request, 'curso.html', context=context)
+
+# =========================================
+#               CORREOS 
+# =========================================            
+
+def correos(request):
+    form = CorreosForm()
+    if request.method == 'POST':
+        form = CorreosForm(request.POST)
+        if form.is_valid(): 
+            form.save()
+            return render(request, 'correos.html')
+    context={
+        'form': form
+    }
+    return render(request, 'correos.html', context)

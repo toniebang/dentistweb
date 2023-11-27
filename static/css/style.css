@@ -110,6 +110,7 @@ ul {
     margin: 0;
     padding: 0; }
 
+
 .bg-overlay {
   position: relative;
   z-index: 1; }
@@ -405,6 +406,9 @@ ul {
   #scrollUp:focus, #scrollUp:hover {
     background-color: #000; }
 
+.dento-bg {
+  background-color: #00aeef;
+}
 .dento-btn {
   position: relative;
   z-index: 1;
@@ -451,7 +455,9 @@ ul {
       font-weight: 600;
       background-color: #ffffff;
       color: #00aeef !important; }
-
+.text-dento{
+  color: #00aeef;
+}
 .header-area {
   position: relative;
   z-index: 599;
@@ -1547,3 +1553,11 @@ ul {
     padding: 15px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.instagram2 {
+  background: #f09433;  
+background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 ); 
+  }

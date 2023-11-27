@@ -6,11 +6,11 @@
 {% block body %}
 
   <!-- ***** Breadcrumb Area Start ***** -->
-  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/12.jpg' %});">
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bg-img/loyal-medical-banner.jpg' %});">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
-          <h2 class="title">Service</h2>
+          <h2 class="title">Servicios</h2>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="col-12">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="fa fa-home"></i> Inicio</a></li>
               <li class="breadcrumb-item active" aria-current="page">Servicios</li>
             </ol>
           </nav>
@@ -32,7 +32,7 @@
   <!-- ***** Breadcrumb Area End ***** -->
 
   <!-- ***** Services Area Start ***** -->
-  <section class="dento-services-area mt-50 mb-50">
+  <section class="dento-services-area  mb-50">
     <div class="container">
       <div class="row">
 
@@ -40,9 +40,9 @@
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="single-service--area text-center mb-50">
             <div class="icon--">
-              <img src="{% static 'img/core-img/s6.png' %}" alt="">
+              <img src="{% static 'img/core-img/consultas_g.png' %}" alt="">
             </div>
-            <h5>Limpieza de Dientes</h5>
+            <h5>Consultas Online</h5>
             <p>In pretium neque a libero congue. Elit diam lectus. Prasent lacinia vitae sit
               mattis mollis maximus.</p>
           </div>
@@ -52,9 +52,9 @@
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="single-service--area text-center mb-50">
             <div class="icon--">
-              <img src="{% static 'img/core-img/s7.png' %}" alt="">
+              <img src="{% static 'img/core-img/dieta_g.png' %}" alt="">
             </div>
-            <h5>Implante Dental</h5>
+            <h5>Dieta Personalizada</h5>
             <p>In pretium neque a libero congue. Elit diam lectus. Prasent lacinia vitae sit
               mattis mollis maximus.</p>
           </div>
@@ -64,9 +64,9 @@
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="single-service--area text-center mb-50">
             <div class="icon--">
-              <img src="{% static 'img/core-img/s8.png' %}" alt="">
+              <img src="{% static 'img/core-img/plan_g.png' %}" alt="">
             </div>
-            <h5>Relleno de Dientes</h5>
+            <h5>Plan de tratamiento natural personalizado</h5>
             <p>In pretium neque a libero congue. Elit diam lectus. Prasent lacinia vitae sit
               mattis mollis maximus.</p>
           </div>
@@ -76,9 +76,9 @@
         <div class="col-12 col-sm-6 col-lg-4">
           <div class="single-service--area text-center mb-50">
             <div class="icon--">
-              <img src="{% static 'img/core-img/s9.png' %}" alt="">
+              <img src="{% static 'img/core-img/mebresia_g.png' %}" alt="">
             </div>
-            <h5>Cosmeticas</h5>
+            <h5>Membresía Cuerpo Saludable</h5>
             <p>In pretium neque a libero congue. Elit diam lectus. Prasent lacinia vitae sit
               mattis mollis maximus.</p>
           </div>
@@ -90,7 +90,7 @@
             <div class="icon--">
               <img src="{% static 'img/core-img/s10.png' %}" alt="">
             </div>
-            <h5>Analisis</h5>
+            <h5>Análisis</h5>
             <p>In pretium neque a libero congue. Elit diam lectus. Prasent lacinia vitae sit
               mattis mollis maximus.</p>
           </div>
@@ -102,10 +102,16 @@
             <div class="icon--">
               <img src="{% static 'img/core-img/s6.png' %}" alt="">
             </div>
-            <h5>Dolor de Muela</h5>
+            <h5>Enseñanza</h5>
             <p>In pretium neque a libero congue. Elit diam lectus. Prasent lacinia vitae sit
               mattis mollis maximus.</p>
           </div>
+        </div>
+        <div class="container">
+          <p class="text-center h6 text-decoration-underline mb-4"><a class="text-decoration-underline azul" href="{% url 'pricing' %}">Ver precios </a></p>
+        </div>
+        <div class="container d-flex justify-content-center align-items-center">
+          <a href="{% url 'index' %}#apointment" class="btn  dento-btn mb-4 w-100">Pedir Cita</a>
         </div>
 
       </div>

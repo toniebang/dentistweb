@@ -9,7 +9,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Dr Valmaceda",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "img/core-img/favicon.ico",
+    "site_logo": "img/core-img/icon_alex.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
@@ -108,6 +108,10 @@ JAZZMIN_SETTINGS = {
         "dentistsapp.Comentario": "fas fa-comment",
         "dentistsapp.Categoria": "fas fa-bookmark",
         "dentistsapp.Post": "fas fa-blog",
+        "dentistsapp.Precio": "fas fa-dollar-sign",
+        "dentistsapp.Curso": "fas fa-chalkboard",
+        "dentistsapp.Correo": "fas fa-at",
+        "dentistsapp.CategoriaCurso": "fas fa-bars",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
